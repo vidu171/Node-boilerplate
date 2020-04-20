@@ -1,38 +1,4 @@
 
-# Created by https://www.gitignore.io/api/node,react,angular
-# Edit at https://www.gitignore.io/?templates=node,react,angular
-
-### Angular ###
-## Angular ##
-# compiled output
-dist/
-tmp/
-app/**/*.js
-app/**/*.js.map
-
-# dependencies
-node_modules/
-bower_components/
-
-# IDEs and editors
-.idea/
-
-# misc
-.sass-cache/
-connect.lock/
-coverage/
-libpeerconnection.log/
-npm-debug.log
-testem.log
-typings/
-
-# e2e
-e2e/*.js
-e2e/*.map
-
-#System Files
-.DS_Store/
-
 ### Node ###
 # Logs
 logs
@@ -41,6 +7,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
+dump.rdb
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
@@ -74,9 +41,11 @@ bower_components
 build/Release
 
 # Dependency directories
+node_modules/
 jspm_packages/
 
 # TypeScript v1 declaration files
+typings/
 
 # TypeScript cache
 *.tsbuildinfo
@@ -110,11 +79,8 @@ jspm_packages/
 .nuxt
 
 # rollup.js default build output
+dist/
 
-# Uncomment the public line if your project uses Gatsby
-# https://nextjs.org/blog/next-9-1#public-directory-support
-# https://create-react-app.dev/docs/using-the-public-folder/#docsNav
-# public
 
 # Storybook build outputs
 .out
@@ -133,19 +99,5 @@ jspm_packages/
 .dynamodb/
 
 # Temporary folders
+tmp/
 temp/
-
-### react ###
-.DS_*
-**/*.backup.*
-**/*.back.*
-
-node_modules
-
-*.sublime*
-
-psd
-thumb
-sketch
-
-# End of https://www.gitignore.io/api/node,react,angular
