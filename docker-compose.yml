@@ -3,7 +3,7 @@ services:
   mongo:
     image: 'mongo'
     environment:
-      MONGO_INITDB_DATABASE: socialdistance
+      MONGO_INITDB_DATABASE: <your_dataBase_name>
     expose:
       - 27017
   redis:
