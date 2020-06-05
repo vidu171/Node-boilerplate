@@ -35,4 +35,10 @@ export const errors = {
   MON003: { message: 'update object is invalid', code: 'MON003' },
   MON004: { message: 'sort object is invalid', code: 'MON004' },
 
+  // JWT
+  JWT001: { message: 'jwt verification failed', code: 'JWT001' },
+  JWT002: { message: 'jwt not active yet', code: 'JWT002' },
+  JWT003: { message: 'jwt token expired', code: 'JWT003' },
+  JWT004: { message: 'jwt token missing', code: 'JWT004' },
+
 }

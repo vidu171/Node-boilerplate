@@ -66,7 +66,10 @@ export const variables = {
   SERVER_API_REVISION: { name: 'SERVER_API_REVISION', value: '' },
   JOB_TYPES: { name: 'JOB_TYPES', value: '' },
   SERVER_PRIVATE_KEY: { name: 'SERVER_PRIVATE_KEY', value: '' },
-  SERVER_FULLCHAIN_KEY: { name: 'SERVER_FULLCHAIN_KEY', value: '' }
+  SERVER_FULLCHAIN_KEY: { name: 'SERVER_FULLCHAIN_KEY', value: '' },
+  JWT_PUBLIC_SECRET: { name: 'JWT_PUBLIC_SECRET', value: 'AEyCukszmMQZVYt72MnBacaruRLMuQehCthDrNLgsU4jHyUgJJZhJHGUmepTZEAP' },
+  JWT_PRIVATE_SECRET: { name: 'JWT_PRIVATE_SECRET', value: '6ZjqQLJxqpRdj6YbLZM8bvR2RfzMJbUQRpeRyGLGeGbtyTnKKd6PYHL5qHW9tUeq' },
+  JWT_ISSUER: { name: 'JWT_ISSUER', value: 'localhost' },
 }
 
 // application default values

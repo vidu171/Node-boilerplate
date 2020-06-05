@@ -1,5 +1,7 @@
 import _ from 'lodash'
 import { v4 as uuidv4 } from 'uuid'
+import parse from 'parse-bearer-token'
+import jwt, { VerifyErrors } from 'jsonwebtoken'
 import ms from 'ms'
 import uniqid from 'uniqid'
 import { NextFunction, Request, Response } from 'express'
@@ -9,6 +11,7 @@ import { variables } from '../common/config'
 import codes from '../common/response'
 import { errors } from '../common/messages'
 import { HttpResponse } from '../app/models/response'
+import { User } from '../app/models/user'
 
 // get environment variable from .env file or return default
 export const getEnvironmentVariable = (variable: number | string) => (process.env[variable] ? process.env[variable] : _.get(variables, `${variable}.value`))
@@ -59,6 +62,29 @@ export const getErrorLog = (method: string, payload: any = {}, message: string =
 
 // get days in month
 export const daysInMonth = (month: number, year: number) => new Date(year, month, 0).getDate()
+
+// check user token is valid or not
+export const isUserAuthenticated = (audience: string | string[]) => (request: Request, response: Response, next: NextFunction) => {
+  const jwtToken = parse(request as any)
+  if (!jwtToken) {
+    return response.status(codes.unauthorized).json(getErrorResponse(errors.JWT004.code))
+  }
+  jwt.verify(jwtToken, getEnvironmentVariable(variables.JWT_PRIVATE_SECRET.name), { audience, issuer: getEnvironmentVariable(variables.JWT_ISSUER.name) }, (error: VerifyErrors, user: object) => {
+    if (!_.isNil(error)) {
+      if (error.name === 'JsonWebTokenError') {
+        return response.status(codes.unauthorized).json(getErrorResponse(errors.JWT001.code))
+      } if (error.name === 'NotBeforeError') {
+        return response.status(codes.unauthorized).json(getErrorResponse(errors.JWT002.code))
+      } if (error.name === 'TokenExpiredError') {
+        return response.status(codes.unauthorized).json(getErrorResponse(errors.JWT003.code))
+      }
+      return response.status(codes.unauthorized).json(getErrorResponse(errors.COM001.code))
+    }
+
+    // request.user = user as User
+    return next()
+  })
+}
 
 // check content type is valid or not
 export const isContentTypeValid = (contents: [string]) => (request: Request, response: Response, next: NextFunction) => {
